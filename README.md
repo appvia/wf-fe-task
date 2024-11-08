@@ -2,13 +2,13 @@
 
 Produce a reusable React component which presents a multi-step wizard to a user.
 
-Use a component library of your choice for the look and feel - we use antd (https://ant.design/) but
-any library can be used.
-
 It should have:
 * Support for a 'Next' button to move forward to the next step of the wizard.
 * Support for an async handler on each step - for example, values from step 1 might be processed asynchronously and used in step 2.
 * Support for building a composite state across the steps, to be submitted at the end of the wizard.
+
+You are welcome to use a component library for look, feel and basic components (we use antd - https://ant.design/) but
+please implement the wizard yourself.
 
 To demonstrate the component, the following example use-case can be used:
 
@@ -27,3 +27,8 @@ asynchronous back end.
 
 **Dummy back end**
 For the purposes of this task, please use the dummy back-end in src/api/dummy-api.ts.
+
+**Running this skeleton project**
+Use `npm run dev` to run in development mode. 
+
+Submitting a PR to this repository will cause the site to be built and a preview generated.
