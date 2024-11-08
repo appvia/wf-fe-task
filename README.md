@@ -1,5 +1,4 @@
 # Task overview
-===============
 
 Produce a reusable React component which presents a multi-step wizard to a user.
 
@@ -26,4 +25,5 @@ enable.
 have been enabled. Finishing the wizard should submit the values to an
 asynchronous back end.
 
-For the purposes of this task, please dummy out the 'back end' with a simple mock of your choice (e.g.a promise that returns a fixed value or values, after a delay).
+**Dummy back end**
+For the purposes of this task, please use the dummy back-end in src/api/dummy-api.ts.
