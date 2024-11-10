@@ -8,7 +8,7 @@ import {
 } from "../../../../../hooks";
 
 export const ReviewScreen = () => {
-  const { userName } = useUserInfo();
+  const { userName, userDescription } = useUserInfo();
   const { selectedFeatureIds } = useSelectedFeatures();
   const { isSuccess } = useInfoSubmitted();
 
@@ -24,11 +24,15 @@ export const ReviewScreen = () => {
         </Alert>
       )}
       <Grid container spacing={2} flexDirection="column">
-        <Grid item xs={8}>
+        <Grid item>
           <Typography variant="h6">Name</Typography>
           <Typography>{userName}</Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item>
+          <Typography variant="h6">Description</Typography>
+          <Typography>{userDescription}</Typography>
+        </Grid>
+        <Grid item>
           <Typography variant="h6">Selected features</Typography>
           {selectedFeatures.map(({ id, name, description }) => (
             <Box key={id}>

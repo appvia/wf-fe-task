@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Wizard } from "../../components";
 import {
-  UserNameForm,
+  UserInfoForm,
   FeatureSelectList,
   ReviewScreen,
 } from "../../components/Wizard/components/WizardSteps";
@@ -25,7 +25,7 @@ export const Home: React.FC = () => {
     () => [
       {
         label: "Insert your name",
-        content: <UserNameForm />,
+        content: <UserInfoForm />,
         canProceedFurther: isNameValid,
       },
       {

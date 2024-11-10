@@ -15,7 +15,7 @@ import { useSelectedFeatures } from "./useSelectedFeatures";
 export const useInfoSubmitted = () => {
   const dispatch = useDispatch();
   const { submit } = DummyApi;
-  const { userName } = useUserInfo();
+  const { userName, userDescription } = useUserInfo();
   const { selectedFeatureIds } = useSelectedFeatures();
 
   const isSuccess = useSelector(
@@ -57,7 +57,11 @@ export const useInfoSubmitted = () => {
     updateOnReset();
     try {
       updateIsLoading(true);
-      await submit({ name: userName, features: selectedFeatureIds });
+      await submit({
+        name: userName,
+        features: selectedFeatureIds,
+        description: userDescription,
+      });
       updateIsLoading(false);
       updateIsSuccess(true);
     } catch (e) {
@@ -71,6 +75,7 @@ export const useInfoSubmitted = () => {
     submit,
     userName,
     selectedFeatureIds,
+    userDescription,
     updateIsSuccess,
     updateErrorDetails,
     updateHasError,

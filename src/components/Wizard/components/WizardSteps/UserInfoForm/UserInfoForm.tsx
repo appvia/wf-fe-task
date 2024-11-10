@@ -2,9 +2,10 @@ import { FormEvent, useState } from "react";
 import { useUserInfo } from "../../../../../hooks/useUserInfo";
 import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 
-export const UserNameForm: React.FC = () => {
+export const UserInfoForm: React.FC = () => {
   const {
     userName,
+    userDescription,
     onNameSubmit,
     hasError,
     isSuccess,
@@ -12,10 +13,11 @@ export const UserNameForm: React.FC = () => {
     errorDetails,
   } = useUserInfo();
   const [name, setName] = useState(userName);
+  const [description, setDescription] = useState(userDescription);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await onNameSubmit(name);
+    await onNameSubmit(name, description);
   };
 
   return (
@@ -32,6 +34,18 @@ export const UserNameForm: React.FC = () => {
         margin="normal"
         slotProps={{ htmlInput: { maxLength: 63 } }}
         autoFocus
+      />
+
+      <TextField
+        label="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        fullWidth
+        variant="outlined"
+        margin="normal"
+        multiline
+        rows={4}
+        placeholder="Enter a brief description of yourself"
       />
 
       <Button

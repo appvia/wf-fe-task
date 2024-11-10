@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface UserNameState {
   name: string;
+  description: string;
   isSuccess: boolean;
   hasError: boolean;
   errorDetails: string;
@@ -10,6 +11,7 @@ interface UserNameState {
 
 const initialState: UserNameState = {
   name: "",
+  description: "",
   isSuccess: false,
   hasError: false,
   errorDetails: "",
@@ -22,6 +24,9 @@ export const userInfoSlice = createSlice({
   reducers: {
     setUserName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
+    },
+    setUserDescription: (state, action: PayloadAction<string>) => {
+      state.description = action.payload;
     },
     setIsSuccess: (state, action: PayloadAction<boolean>) => {
       state.isSuccess = action.payload;
@@ -47,6 +52,7 @@ export const userInfoSlice = createSlice({
 
 export const {
   setUserName,
+  setUserDescription,
   setIsSuccess,
   setHasError,
   setErrorDetails,

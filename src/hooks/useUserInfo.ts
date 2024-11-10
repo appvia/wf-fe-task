@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   setUserName,
+  setUserDescription,
   setIsSuccess,
   setHasError,
   setIsLoading,
@@ -16,6 +17,9 @@ export const useUserInfo = () => {
   const { checkName } = DummyApi;
 
   const userName = useSelector((state: RootState) => state.userInfo.name);
+  const userDescription = useSelector(
+    (state: RootState) => state.userInfo.description
+  );
   const isSuccess = useSelector((state: RootState) => state.userInfo.isSuccess);
   const hasError = useSelector((state: RootState) => state.userInfo.hasError);
   const isLoading = useSelector((state: RootState) => state.userInfo.isLoading);
@@ -25,6 +29,11 @@ export const useUserInfo = () => {
 
   const updateUserName = useCallback(
     (newName: string) => dispatch(setUserName(newName)),
+    [dispatch]
+  );
+
+  const updateUserDescription = useCallback(
+    (newDescription: string) => dispatch(setUserDescription(newDescription)),
     [dispatch]
   );
 
@@ -51,13 +60,14 @@ export const useUserInfo = () => {
   const updateOnReset = useCallback(() => dispatch(onReset()), [dispatch]);
 
   const onNameSubmit = useCallback(
-    async (name: string) => {
+    async (name: string, description: string) => {
       updateOnReset();
       try {
         updateIsLoading(true);
         await checkName({ name });
         updateIsLoading(false);
         updateIsSuccess(true);
+        updateUserDescription(description);
         updateUserName(name);
       } catch (e) {
         updateErrorDetails(e as string);
@@ -70,6 +80,7 @@ export const useUserInfo = () => {
       updateIsLoading,
       checkName,
       updateIsSuccess,
+      updateUserDescription,
       updateUserName,
       updateErrorDetails,
       updateHasError,
@@ -78,11 +89,13 @@ export const useUserInfo = () => {
 
   return {
     userName,
+    userDescription,
     isLoading,
     isSuccess,
     hasError,
     errorDetails,
     updateUserName,
+    updateUserDescription,
     updateIsLoading,
     updateIsSuccess,
     updateHasError,
