@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { WizardButtonsProps } from "./WizardButtons.types";
 import { ButtonWrapper } from "./WizardButtons.styles";
 
@@ -7,6 +7,9 @@ export const WizardButtons: React.FC<WizardButtonsProps> = ({
   setStep,
   isFirstStep,
   isLastStep,
+  canProceedFurther,
+  canProceedBack,
+  onSubmit,
 }) => {
   const onPreviousStepChange = () => {
     setStep(currentStep - 1);
@@ -14,7 +17,7 @@ export const WizardButtons: React.FC<WizardButtonsProps> = ({
 
   const onNextStepChange = () => {
     if (isLastStep) {
-      console.log("hello");
+      onSubmit();
     } else {
       setStep(currentStep + 1);
     }
@@ -22,10 +25,17 @@ export const WizardButtons: React.FC<WizardButtonsProps> = ({
 
   return (
     <ButtonWrapper>
-      <Button disabled={isFirstStep} onClick={onPreviousStepChange}>
+      <Button
+        disabled={isFirstStep || !canProceedBack}
+        onClick={onPreviousStepChange}
+      >
         Previous
       </Button>
-      <Button onClick={onNextStepChange}>
+      <Button
+        onClick={onNextStepChange}
+        disabled={!canProceedFurther}
+        variant="contained"
+      >
         {isLastStep ? "Submit" : "Next"}
       </Button>
     </ButtonWrapper>

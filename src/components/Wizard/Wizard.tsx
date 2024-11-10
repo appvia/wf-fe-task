@@ -4,9 +4,9 @@ import { WizardHeader } from "./components";
 import { WizardButtons } from "./components/WizardButtons";
 import { ContentWrapper } from "./Wizard.styles";
 
-export const Wizard: React.FC<WizardProps> = ({ steps }) => {
+export const Wizard: React.FC<WizardProps> = ({ steps, onSubmit }) => {
   const [step, setStep] = useState(0);
-  const { content } = steps[step];
+  const { content, canProceedFurther, canProceedBack = true, isLoading } = steps[step];
   const headerSteps: string[] = steps.map(({ label }) => {
     return label;
   });
@@ -20,6 +20,9 @@ export const Wizard: React.FC<WizardProps> = ({ steps }) => {
         currentStep={step}
         isFirstStep={step === 0}
         isLastStep={step === steps.length - 1}
+        canProceedFurther={canProceedFurther && !isLoading}
+        canProceedBack={canProceedBack}
+        onSubmit={onSubmit}
       />
     </section>
   );

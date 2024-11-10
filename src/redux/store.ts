@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userNameReducer from "../slices/userNameSlice";
+import userInfoReducer from "../slices/userInfoSlice";
+import featureSliceReducer from "../slices/featureSlice";
+import submitSliceReducer from "../slices/submitSlice";
+
 const store = configureStore({
   reducer: {
-    userName: userNameReducer,
+    userInfo: userInfoReducer,
+    selectedFeatures: featureSliceReducer,
+    infoSubmitted: submitSliceReducer,
   },
 });
 
