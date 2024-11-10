@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useUserInfo } from "../../../../../hooks/useUserInfo";
-import { TextField, Button, Alert } from "@mui/material";
+import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 
 export const UserNameForm: React.FC = () => {
   const {
@@ -40,8 +40,11 @@ export const UserNameForm: React.FC = () => {
         color="primary"
         role="submit"
         disabled={isLoading}
+        startIcon={
+          isLoading ? <CircularProgress size={20} color="inherit" /> : null
+        }
       >
-        Submit
+        {isLoading ? "Loading..." : "Submit"}
       </Button>
     </form>
   );
