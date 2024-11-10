@@ -6,14 +6,19 @@ import { ContentWrapper } from "./Wizard.styles";
 
 export const Wizard: React.FC<WizardProps> = ({ steps, onSubmit }) => {
   const [step, setStep] = useState(0);
-  const { content, canProceedFurther, canProceedBack = true, isLoading } = steps[step];
+  const {
+    content,
+    canProceedFurther,
+    canProceedBack = true,
+    isLoading,
+  } = steps[step];
   const headerSteps: string[] = steps.map(({ label }) => {
     return label;
   });
 
   return (
     <section>
-      <WizardHeader steps={headerSteps} setStep={setStep} currentStep={step} />
+      <WizardHeader steps={headerSteps} currentStep={step} />
       <ContentWrapper>{content}</ContentWrapper>
       <WizardButtons
         setStep={setStep}
